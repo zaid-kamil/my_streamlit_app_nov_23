@@ -26,12 +26,19 @@ with st.spinner("Loading data..."):
     df = load_data()
 
 st.header("IMDB 8000 movies dataset")
-st.info("Raw Data in DataFrame")
-st.dataframe(df, use_container_width=True)
+c1, c2 = st.columns(2)
+with c1:
+    st.info("Raw Data in DataFrame")
+    st.dataframe(df, use_container_width=True)
 
-st.success("Column information of the dataset")
-cols = df.columns.tolist()
-st.subheader(f'Total columns {len(cols)} ➡️ {", ".join(cols)}')
+    st.success("Column information of the dataset")
+    cols = df.columns.tolist()
+    st.subheader(f'Total columns {len(cols)} ➡️ {", ".join(cols)}')
+with c2:
+    st.success("Summary of the dataset")
+    st.dataframe(df.describe(), use_container_width=True)
+    st.success("Data types of the dataset")
+    
 # 3. add some graph and widgets
 st.header("Basic Data Visualization")
 gop = ['bar', 'line', 'area']
